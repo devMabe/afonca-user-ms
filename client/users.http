@@ -1,0 +1,28 @@
+@url = http://localhost:3000
+
+@Token = eyJhbGciOiJSUzI1NiIsInR5cCI6IkpXVCJ9.eyJhdWQiOiJodHRwczovL2lkZW50aXR5dG9vbGtpdC5nb29nbGVhcGlzLmNvbS9nb29nbGUuaWRlbnRpdHkuaWRlbnRpdHl0b29sa2l0LnYxLklkZW50aXR5VG9vbGtpdCIsImlhdCI6MTY4OTgwODY1MCwiZXhwIjoxNjg5ODEyMjUwLCJpc3MiOiJmaXJlYmFzZS1hZG1pbnNkay16MmNxYUBjaWRhc2hvYmFyZC5pYW0uZ3NlcnZpY2VhY2NvdW50LmNvbSIsInN1YiI6ImZpcmViYXNlLWFkbWluc2RrLXoyY3FhQGNpZGFzaG9iYXJkLmlhbS5nc2VydmljZWFjY291bnQuY29tIiwidWlkIjoiTERVa2RVNmVwZFVycDlsRWI4cTQ5ZGlIVXBoMiIsImNsYWltcyI6eyJpZCI6IkxEVWtkVTZlcGRVcnA5bEViOHE0OWRpSFVwaDIiLCJmaXJzdE5hbWUiOiJNYXRlbyIsImxhc3ROYW1lIjoiQmVsdHJhbiIsImVtYWlsIjoiZGFuaWVsYmVsbnV6MThAZ21haWwuY29tIiwiZW5hYmxlIjp0cnVlLCJyb2xlcyI6IkFETUlOIiwicmVzZXRDb2RlIjoiNmUzNDRmOGVhOWQwIn19.fmsmnnd8QL4mW5QKADAcqry_e5_a1Ecn2o7fI6AAcmiw51Tm7Qq7LaLwuMuHBMyD8rIhpG2N2w0AUKLNABe7FznGTPvCPN0f6KPijT8_YLU-UzOnOMpgqWa9hpIraW33sAcgN8gsCxO3OsogIBHFsR06s8p96HmHMv-HSSGzrruVkdiDaqgM9BbGruDNFiZu5Xk2Il_d1tp5sfAvAzs_VMOkAOskYYOkeNWu_1QJ4T3Oo3jppFdV1Ypu_xKS-sCtYHSkzHneP4n-WYrGohBcHODv0g890xff4-epzbCWCzcogsHL8FFp3eDdLpZIf_KRE9YMiaU3oTTS6FeqyYBnFQ
+
+@emailGmail = noreplymsservice@gmail.com
+@emailOutlook = afonca-service-users@outlook.com
+
+GET {{url}}/users
+Authorization: {{Token}}
+
+
+###
+POST {{url}}/users/reset-password
+Content-Type: application/json
+
+{
+  "email": "danielbelnuz18@gmail.com"
+}
+
+
+###
+POST  {{url}}/users/confirm-password
+Content-Type: application/json
+
+{
+  "resetCode": "6e344f8ea9d0",
+  "newPassword": "Test.123"
+}

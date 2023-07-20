@@ -1,0 +1,23 @@
+@url = http://localhost:3000
+
+
+POST {{url}}/auth/login
+Content-Type: application/json
+
+{
+  "username": "danielbelnuz18@gmail.com",
+  "password": "Test.123"
+}
+
+
+###
+POST {{url}}/auth/register
+Content-Type: application/json
+
+{
+  "firstName": "Usuario",
+  "lastName": "De prueba",
+  "email": "usuario@prueba.com",
+  "password": "pass.123",
+  "dob": "12/11/2001"
+}

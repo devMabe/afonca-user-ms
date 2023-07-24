@@ -7,3 +7,8 @@ export class AuthSchema {
   @ApiProperty()
   password: string;
 }
+
+export class AuthResponse {
+  @ApiProperty()
+  accessToken: string;
+}

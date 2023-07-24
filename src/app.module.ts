@@ -11,9 +11,11 @@ import { ConfigModule } from '@nestjs/config';
 import { AuthModule } from './auth/auth.module';
 import { AuthService } from './auth/services/auth.service';
 import { CheckJwt } from './auth/middleware/session';
+import { AppController } from './app.controller';
 
 @Module({
   imports: [ConfigModule.forRoot(), UsersModule, FirebaseModule, AuthModule],
+  controllers: [AppController],
   providers: [UsersService, AuthService],
 })
 export class AppModule implements NestModule {

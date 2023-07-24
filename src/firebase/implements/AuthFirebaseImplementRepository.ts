@@ -21,13 +21,13 @@ export class AuthFirebaseImplementRepository implements AuthRepository {
             accessToken: token.fbToken,
           };
         } else {
-          throw new BadRequestException('Invalid Token');
+          throw new BadRequestException('Token invalido');
         }
       } else {
-        throw new BadRequestException('Wrong credentials');
+        throw new BadRequestException('Usuario o contraseña incorrectas');
       }
     } else {
-      throw new BadRequestException('Email not found');
+      throw new BadRequestException('El correo no fue encontrado');
     }
   }
 

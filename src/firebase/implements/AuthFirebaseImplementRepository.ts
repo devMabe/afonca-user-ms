@@ -1,7 +1,7 @@
 import { Injectable, BadRequestException } from '@nestjs/common';
 import { AuthRepository } from 'src/auth/repositories/auth.repository';
 import { UserRepository } from 'src/users/repositories/users.repository';
-import { verified } from 'src/utils/bcrypt';
+import { encrypt, verified } from 'src/utils/bcrypt';
 import { generateToken, verifyToken } from 'src/utils/security';
 import { AuthResponse, User } from 'src/users/model/User';
 
@@ -24,7 +24,7 @@ export class AuthFirebaseImplementRepository implements AuthRepository {
           throw new BadRequestException('Token invalido');
         }
       } else {
-        throw new BadRequestException('Usuario o contraseña incorrectas');
+        throw new BadRequestException('Correo o contraseña incorrecta');
       }
     } else {
       throw new BadRequestException('El correo no fue encontrado');
@@ -32,7 +32,11 @@ export class AuthFirebaseImplementRepository implements AuthRepository {
   }
 
   async register(userParams: User): Promise<AuthResponse> {
+    const hashPassword = await encrypt(userParams.password);
+    userParams.password = hashPassword;
+
     const response = await this.userRepo.create(userParams);
+
     if (response) {
       delete response.password;
       const token = await generateToken({ user: response });

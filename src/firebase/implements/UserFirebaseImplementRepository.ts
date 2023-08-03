@@ -18,7 +18,6 @@ export class UserFirebaseImplementRepository implements UserRepository {
     if (user) {
       user.password = await encrypt(newPassword);
       await this.update(user);
-      console.log('Contraseña cambiada exitosamente.');
     } else {
       throw new BadRequestException('El codigo ingresado es incorrecto');
     }
@@ -27,7 +26,7 @@ export class UserFirebaseImplementRepository implements UserRepository {
   async resetPassword(email: string): Promise<void> {
     const user = await this.getByEmail(email);
     if (!user) {
-      throw new BadRequestException('User not found');
+      throw new BadRequestException('Email no encontrado');
     }
 
     const resetCode = this.generateResetCode();
@@ -59,8 +58,7 @@ export class UserFirebaseImplementRepository implements UserRepository {
 
     if (user.email) {
       const userWithSameEmail = await this.getByEmail(user.email);
-      if (userWithSameEmail)
-        throw new BadRequestException('Email already in use');
+      if (userWithSameEmail) throw new BadRequestException('Correo ya en uso');
     }
 
     const displayName = `${user.firstName} ${user.lastName}`;

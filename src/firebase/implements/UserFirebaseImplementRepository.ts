@@ -146,7 +146,7 @@ export class UserFirebaseImplementRepository implements UserRepository {
       from: process.env.EMAIL,
       to: email,
       subject: 'Código de reseteo de contraseña',
-      text: `Tu código de reseteo de contraseña es: ${resetCode} `,
+      text: `Tu código de reseteo de contraseña es: ${resetCode}`,
     };
 
     transporter.sendMail(mailOptions, (error, info) => {

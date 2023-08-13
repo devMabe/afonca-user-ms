@@ -30,8 +30,10 @@ export interface TokenData {
 export interface Auth {
   token?: string;
   fbToken?: string;
+  userData?: User;
 }
 
 export interface AuthResponse {
   accessToken?: string;
+  userData?: User;
 }

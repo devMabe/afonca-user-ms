@@ -19,6 +19,7 @@ export class AuthFirebaseImplementRepository implements AuthRepository {
         if (validSession) {
           return {
             accessToken: token.fbToken,
+            userData: user,
           };
         } else {
           throw new BadRequestException('Token invalido');

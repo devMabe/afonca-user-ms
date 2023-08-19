@@ -112,6 +112,19 @@ export class UsersController {
   })
   @ApiResponse({ status: 404, description: 'Usuario no encontrado' })
   public async updateProfileUser(@Param('id') id: string, @Body() body: User) {
+    return await this.userService.updateProfileUser(id, body);
+  }
+
+  @UseGuards(RolesGuard)
+  @Put('/update-user/:id')
+  @Role('ADMIN')
+  @ApiOperation({ summary: 'Actualizar la data de un usuario por su ID' })
+  @ApiResponse({
+    status: 200,
+    description: 'Perfil del usuario actualizado correctamente',
+  })
+  @ApiResponse({ status: 404, description: 'Usuario no encontrado' })
+  public async updateUser(@Param('id') id: string, @Body() body: User) {
     return await this.userService.updateUser(id, body);
   }
 

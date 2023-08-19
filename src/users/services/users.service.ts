@@ -31,10 +31,17 @@ export class UsersService {
     return this.mapToUserResponse(response);
   }
 
-  async updateUser(
+  async updateProfileUser(
     id: string,
     body: Pick<User, 'firstName' | 'lastName'>,
   ): Promise<UserReponse> {
+    const user = await this.findUser(id);
+    Object.assign(user, body);
+    const response = await this.userRepository.update(user);
+    return this.mapToUserResponse(response);
+  }
+
+  async updateUser(id: string, body: User): Promise<UserReponse> {
     const user = await this.findUser(id);
     Object.assign(user, body);
     const response = await this.userRepository.update(user);
